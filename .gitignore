@@ -35,3 +35,16 @@
 #symlink files
 *.symlink
 fig*
+
+#project files and cgi files
+*.IAB
+*.IAD
+*.IMB
+*.IMD
+*.PFI
+*.PO
+*.PR
+*.PRI
+*.PS
+*.WK3
+*.cgi
