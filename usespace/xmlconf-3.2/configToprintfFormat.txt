@@ -1,0 +1,218 @@
+" 	<system>\n"  \
+"    <hostname>NS-3000</hostname>\n"  \
+"    <domainname />\n"  \
+"    <contact>service@cdnat.com</contact>\n"  \
+"    <location>ChengDU Net All Technology Co.</location>\n"  \
+"    <password>$1$dVZ/h210$js19hwu66WJ/BcGgPkNEY1</password>\n"  \
+"    <enable_stp>0</enable_stp>\n"  \
+"    <auto_update>0</auto_update>\n"  \
+"    <update_url>www.mikrotik.com.cn</update_url>\n"  \
+"    <ntp_enable>0</ntp_enable>\n"  \
+"    <ntp_server />\n"  \
+"    <timezone />\n"  \
+"    <bridge_mtu>1500</bridge_mtu>\n"  \
+"    <dbridge_perf>1</dbridge_perf>\n"  \
+"    <snmp_enable>0</snmp_enable>\n"  \
+"    <snmp_ro_community>public</snmp_ro_community>\n"  \
+"    <snmp_rw_community>private</snmp_rw_community>\n"  \
+"  </system>\n"  \
+
+"  <management>\n"  \
+"    <ip>192.168.0.251</ip>\n"  \
+"    <netmask>255.255.255.0</netmask>\n"  \
+"    <broadcast>192.168.0.255</broadcast>\n"  \
+"    <gateway>192.168.0.1</gateway>\n"  \
+"    <server>192.168.0.1</server>\n"  \
+"    <dns_primary>202.98.96.68</dns_primary>\n"  \
+"    <dns_secondary>61.139.2.69</dns_secondary>\n"  \
+"  </management>\n"  \
+
+"  <auth>\n"  \
+"    <enable>0</enable>\n"  \
+"    <timeout_mode>0</timeout_mode>\n"  \
+"    <timeout_seconds>60</timeout_seconds>\n"  \
+"    <enable_multi_user>1</enable_multi_user>\n"  \
+"    <deny_guest_access>0</deny_guest_access>\n"  \
+"    <redirect_http_request>0</redirect_http_request>\n"  \
+"    <redirect_http_url />\n"  \
+"  </auth>\n"  \
+
+"  <interface>\n"  \
+"    <int0>\n"  \
+"      <mode>auto</mode>\n"  \
+"      <speed>1000</speed>\n"  \
+"      <duplex>full</duplex>\n"  \
+"    </int0>\n"  \
+"    <ext0>\n"  \
+"      <mode>auto</mode>\n"  \
+"      <speed>1000</speed>\n"  \
+"      <duplex>full</duplex>\n"  \
+"    </ext0>\n"  \
+"    <int1>\n"  \
+"      <mode>auto</mode>\n"  \
+"      <speed>1000</speed>\n"  \
+"      <duplex>full</duplex>\n"  \
+"    </int1>\n"  \
+"    <ext1>\n"  \
+"      <mode>auto</mode>\n"  \
+"      <speed>1000</speed>\n"  \
+"      <duplex>full</duplex>\n"  \
+"    </ext1>\n"  \
+"    <mgt>\n"  \
+"      <mode>auto</mode>\n"  \
+"      <speed>1000</speed>\n"  \
+"      <duplex>full</duplex>\n"  \
+"    </mgt>\n"  \
+"    <ha>\n"  \
+"      <mode>auto</mode>\n"  \
+"      <speed>1000</speed>\n"  \
+"      <duplex>full</duplex>\n"  \
+"    </ha>\n"  \
+"  </interface>\n"  \
+"  <vlans>\n"  \
+"    <vlan name="vlan1" vlans="1" comment="" />\n"  \
+"  </vlans>\n"  \
+"  <networks>\n"  \
+"    <addr name="test" value="10.200.15.24" range="false" comment="test" />\n"  \
+"    <addr name="1" value="192.168.0.2" range="false" comment="1" />\n"  \
+"    <addr name="wo" value="192.168.1.234" range="false" comment="wo" />\n"  \
+"    <addr name="ip" value="10.200.15.24" range="false" comment="ip" />\n"  \
+"    <addr name="sina" value="221.236.31.145" range="false" comment="sina" />\n"  \
+"    <addr name="ros2" value="172.16.1.1" range="false" comment="ros2" />\n"  \
+"    <addr name="ros1" value="10.200.15.1" range="false" comment="ros1" />\n"  \
+"  </networks>\n"  \
+"  <networks_groups>\n"  \
+"    <group name="5">\n"  \
+"      <include name="1" />\n"  \
+"    </group>\n"  \
+"  </networks_groups>\n"  \
+
+"  <domain_data>\n"  \
+"    <domain name="domain1" value="www.g.com" comment="" />\n"  \
+"    <domain name="d2" value="sohu.com" comment="" />\n"  \
+"  </domain_data>\n"  \
+"  <domain_groups>\n"  \
+"    <group name="dg">\n"  \
+"      <include name="domain1" />\n"  \
+"      <include name="d2" />\n"  \
+"    </group>\n"  \
+"  </domain_groups>\n"  \
+
+"  <extension>\n"  \
+"    <ext name=".exe" value=".exe" comment="" />\n"  \
+"    <ext name=".rar" value=".rar" comment="" />\n"  \
+"  </extension>\n"  \
+"  <extension_group>\n"  \
+"    <group name="extg">\n"  \
+"      <include name=".exe" />\n"  \
+"      <include name=".rar" />\n"  \
+"    </group>\n"  \
+"  </extension_group>\n"  \
+
+
+"  <httpserver>\n"  \
+"    <http name="ser1" ip_addr="1.1.1.1" servertype="apache" prefix="aa" suffix="bb" comment="" />\n"  \
+"    <http name="se2" ip_addr="2.2.2.2" servertype="httpd" prefix="ss" suffix="ee" comment="" />\n"  \
+"  </httpserver>\n"  \
+"  <httpserver_group>\n"  \
+"    <group name="serg">\n"  \
+"      <include name="ser1" />\n"  \
+"      <include name="se2" />\n"  \
+"    </group>\n"  \
+"  </httpserver_group>\n"  \
+"  <protocols>\n"  \
+"    <protocol name="TEST" proto="TCP" dport="22" sport="11" match="" option="" commont="" />\n"  \
+"    <protocol name="T2" proto="UDP" dport="44" sport="23" match="" option="" commont="" />\n"  \
+"  </protocols>\n"  \
+"  <protocols_groups>\n"  \
+"    <group name="WEB">\n"  \
+"      <include name="HTTP-BROWSE" />\n"  \
+"      <include name="HTTPS" />\n"  \
+"    </group>\n"  \
+"    <group name="STREAM">\n"  \
+"      <include name="PPFILM" />\n"  \
+"      <include name="PPLIVE" />\n"  \
+"      <include name="PPSTREAM" />\n"  \
+"      <include name="QQLIVE" />\n"  \
+"      <include name="REALPLAYER" />\n"  \
+"      <include name="MEDIAPLAYER" />\n"  \
+"      <include name="YOUTUBE" />\n"  \
+"      <include name="FLV" />\n"  \
+"      <include name="UCLIVE" />\n"  \
+"    </group>\n"  \
+"  </protocols_groups>\n"  \
+"  <schedules>\n"  \
+"    <schedule name="time1" start_time="00:00" stop_time="00:00" days="Mon,Tue,Wed,Thu,Fri" commont="" />\n"  \
+"    <schedule name="time2" start_time="00:00" stop_time="00:00" days="Sat,Sun" commont="" />\n"  \
+"  </schedules>\n"  \
+"  <schedules_groups>\n"  \
+"    <group name="timegroup">\n"  \
+"      <include name="time1" />\n"  \
+"      <include name="time2" />\n"  \
+"    </group>\n"  \
+"  </schedules_groups>\n"  \
+"  <logger>\n"  \
+"    <block_log>0</block_log>\n"  \
+"    <http_log>0</http_log>\n"  \
+"    <session_log>0</session_log>\n"  \
+"    <session_layer7_log>17GUAGUA 9158 ALIWW AOL BAIDUHI BIGANT CAIHONG DOSHOW EBUDDY FETION ICQ ICQ-AUDIO ICQ-FILE ICQ-WEBCAM IRC LAVA LIAOLIAO MSN MSN-AUDIO MSN-FILE MSN-WEB MSN-WEBCAM MYPOPO QQ QQ-AUDIO QQ-FILE QQ-SHARE QQ-WEBCAM SINAUT UC WEBIM XMPP YAHOO YAHOO-AUDIO YAHOO-FILE YAHOO-WEB YAHOO-WEBCAM ASCTRL-AGENT DBASE DBCONTROL-AGENT GIOP GIOP-SSL MS-SQL-M MS-SQL-S MYSQL ORACLE UFIDA CCB CMB ICBC AIRSYNC BIFF CCMAIL HOTMAIL IMAP IMAPS LOTUSMTAP LOTUSNOTES POP3 POP3S RE-MAIL-CK SMTP AFPOVERTCP BFTP DROPBOX FLASHGET FTP GOGOBOX HTTP-DOWNLOAD HTTP-MIRROR HTTP-PART MICROSOFT-DS MSUPDATE NNTP RAYSOURCE RSYNC SFTP SMTCUPDATE TFTP TFTPS THUNDER UUCP WAFS 02JAM 1000Y 131WANWAN 175PT 7FGAME AION AMPED ARCHLORD ATLANTICA AUDITION BATTLEFIELD1942 BDGAME BNETFILE BNETGAME BO CFGAME CGA CHD CHIBI CHINAGAMES CJPP CJSH CJWZ CJYZ COUNTERSTRIKE CQQZ CRAZYKART CROSSFIRE CSJ CWSL DAYOFDEFEAT DDVLOBBY DHXY DHXYWZ DNF DOKEE DOOM3 DTQB EUDEMONS FEIFEI FHZL FIFAONLINE2 FKXD FLGAME FSJOY FWTJ FYZWDTX GAME-FLOW GAMEABC GAMETEA GARENA GFSJ GIANT ICQ-GAME JJ JXSJ KZSJ LAIZI LINEAGE LMZY LONGZHIGU LOONG LQS LUNA LUOQI LYPT MDM365 MHDSN MHGL MHLZ MHZX MINGJIANG MIR MJSG MLBB MOQISHI MSN-GAME MU MXD MXSJ MY OURGAME POPKART POPOGAME POPTANG QQ-GAME QQDANCER QQDMX QQFFO QQHX QQR2 QQSG QQSPEED QQTANG QSH QUAKE4 RWPD RXJH SANGUOSHA SDFW SDGUNDAM SEER SGCQ SGDL SGOL SHENJIE SHENQI SILKROAD SMDL SSGD SSOL SUBSPACE SUN SXCS TCYX TIANXIA2 TLBB TMZ TSTD2 TZBD TZDM VSCLIENT WANKU WANMEI WENDAO WLQXZ WOW WULIN2 WUYIGAME XBOXLIVE XCB XCCS XINSHUMEN XIWANG XIYOUJI XJSQ XLGAME XLQY2 XLZJ XPTYJ XUNXIAN XYQJ XYXND YAHOO-GAME YBTX YGAM YHGAME YQOL YTJYTLD YXL ZHANHUO ZHENGFU ZHSK ZHUXIAN ZHW ZHYX ZMR ZSZZ ARNS CAN-DCH CAN-FERRET CAN-NDS CVS DCP DDDP DDNS-V3 DDT DHCP DHCP-FAILOVER DNS EPMAP FINGER GKRELLM HDDTEMP HTTP-RPC-EPMAP IDENT LDAP LDAPS NCP NETBIOS-DGM NETBIOS-NS NETBIOS-SSN NTP RLP SMB SNMP SSDP SUNRPC SYSLOG TACACS TIME TSP UTIME ZMAAP ANALYZING_TCP ANALYZING_UDP ANY ARP ICMP IPV6 IPX MPLS OTHERS OTHERS_IPV4 OTHERS_TCP OTHERS_UDP PPPOE SOFT_BYPASS 360SAFE ARES AUDIOGALAXY BAIDUX BITTORRENT DIRECTCONNECT EMULE EZPEER FASTTRACK FOXY FROSTWIRE GNUTELLA GOBOOGY HUNTMINE KTXNEWS KUGOO KURO MAZE MUTE MXIE OPENFT P2P-COMMON P8 PANDO PIGO POCO PP365 PPGOU QQDOWNLOAD REALLINK SHAREAZA SOOYUU SORIBADA SOULSEEK VAGAA IPP LPD CISCOVPN CITRIX LOGMEIN NETMAN NETOP PCANYWHERE RADMIN RDP RLOGIN RTELNET SSH TEAMVIEWER TELNET TELNETS VNC WINBOX X11 BGMP BGP BRP CFS CISCO-TDP RIP AH-ESP-ENCAP APPLE-VPNS-RP AUTH CHECKPOINT-RTM CP-CLUSTER ISAKMP SOCKS SSL 10JQKA-Q 10JQKA-T 888JC-Q APEX-T AVIC-Q AVIC-T BOCI-Q BYDS-Q BYDS-T CAIFUTONG-T CAISHUN-Q CJIS-Q DACELUE-Q DAFUXING-Q DAZHIHUI-Q DHQ-Q EMONEY-Q ESSENCES-T ESUNNY-T EWINNER-T FENXIJIA-Q FOUNDERSC-Q FUYOO-Q GALAXY-Q GJZQ-Q GNNT-Q GNNT-T GTJA-Q GTJA-T GUOSEN-Q HEXUN-Q HHNSD-Q HTS-T HUATAI-Q HUNDSUN-T HXGC JSDGOLD-T LHZQ-T MUCHINFO-T NEWONE-T POBOGC QIANLONG-Q QIANLONG-T QIANXUN-Q SHIHUA-Q SMEYE-Q STOCKTRACE-Q SUNGARD-T TDX-Q TDX-T TDXGC TZT-T TZYJ-Q TZYJ-T WENHUA-Q WENHUA-T WIND-Q ZQZX-Q 56 APPLEQTC APPLEQTCSRVR BESTV BOBO CCIPTV CNTV DOPOOL FEIDIAN FLV FUNSHION HCRT IFENG IKU IMGO JOY KKBOX KOOWO KU6 KU6SPEEDUPPER LETV LIUJIANFANG LIVE365 MEDIAPLAYER MMS MOPITV MYSEE ORINNO PPFILM PPLIVE PPSTREAM PPVA QIYI QQLIVE QUICKTIME QVOD QYULE REALPLAYER RTSP SHOUTCAST SINATV SOHUTV TOMLIVE TTPLAYER TUDOU TUDOUVA TVANTS TVKOO TVU UMIWI USTREAM UUSEE V1 VGOLIVE VIEWGOOD WEBPLAYER9 YOUKU YOUTUBE HTTP-TUNNEL HTTPTUNNEL L2TP PPTP REALTUNNEL SOFTETHER STUN VNN ALICALL CALL-SIG-TRANS CISCO-SCCP ETNANO EYEBALLCHAT GIZMO H248-BINARY H263-VIDEO H323 H323CALLSIGALT H323GATEDISC H323GATESTAT H323HOSTCALLSC IMTC-MCS ISPEAK IVAGE KC KINGHOO MEGACO-H248 MSICCP NET2PHONE POLYCOM RSVP RTCP RTP SEEGLE SIP SKYPE TEAMSPEAK VENTRILO VTALK WAIWAI ZTE ACE-PROXY DAVSRC DOCIN FACEBOOK FLICKR FREENET GOOGLEDESKTOP GOOGLETRANS GOPHER HTTP-BROWSE HTTP-OTHERS HTTPS PICASA PROXY TWITTER WHJMOA XML</session_layer7_log>\n"  \
+"    <scan_detect_log>0</scan_detect_log>\n"  \
+"    <dos_detect_log>0</dos_detect_log>\n"  \
+"  </logger>\n"  \
+
+
+"  <traffic>\n"  \
+"    <traffic_control>1</traffic_control>\n"  \
+"    <channels classname="upload" bandwidth="1000Mbps" bridge="0" comment="Total Upload Bandwidth">\n"  \
+"      <channel classname="up1" parentname="upload" sharename="none" classtype="0" rate="100Mbps" priority="0" limit="100" default="0" attribute="1" weight="0" comment="0" />\n"  \
+"      <channel classname="upA" parentname="upload" sharename="none" classtype="1" rate="100Mbps" priority="7" limit="0" default="0" attribute="0" weight="0" bridge="0" comment="fff" />\n"  \
+"      <channel classname="upA-1" parentname="upA" sharename="none" classtype="2" rate="100Mbps" priority="7" limit="0" default="1" attribute="0" weight="0" bridge="0" comment="" ceil="0" />\n"  \
+"    </channels>\n"  \
+"    <channels classname="download" bandwidth="1000Mbps" bridge="0" comment="Total Download Bandwidth">\n"  \
+"      <channel classname="down2" parentname="download" sharename="none" classtype="0" rate="1000Mbps" priority="0" limit="0" default="0" attribute="0" weight="0" bridge="0" comment="" />\n"  \
+"      <channel classname="downA" parentname="download" sharename="none" classtype="1" rate="100Mbps" priority="7" limit="0" default="0" attribute="0" weight="0" bridge="0" comment="" />\n"  \
+"      <channel classname="downA-1" parentname="downA" sharename="none" classtype="2" rate="200Mbps" priority="7" limit="0" default="1" attribute="0" weight="0" bridge="0" comment="" ceil="0" />\n"  \
+"    </channels>\n"  \
+"    <channels classname="upload" bandwidth="1000Mbps" bridge="1" comment="Total Upload Bandwidth">\n"  \
+"      <channel classname="aa" parentname="upload" sharename="none" classtype="0" rate="1Mbps" priority="0" limit="0" default="0" attribute="0" weight="0" bridge="1" comment="" />\n"  \
+"      <channel classname="gg" parentname="upload" sharename="none" classtype="1" rate="100Mbps" priority="7" limit="0" default="0" attribute="0" weight="0" bridge="1" comment="" />\n"  \
+"      <channel classname="yy" parentname="gg" sharename="none" classtype="2" rate="1Mbps" priority="7" limit="0" default="1" attribute="0" weight="0" bridge="1" comment="" ceil="0" />\n"  \
+"    </channels>\n"  \
+"    <channels classname="download" bandwidth="1000Mbps" bridge="1" comment="Total Download Bandwidth">\n"  \
+"      <channel classname="aa" parentname="download" sharename="none" classtype="0" rate="1Mbps" priority="0" limit="0" default="0" attribute="0" weight="0" bridge="1" comment="" />\n"  \
+"      <channel classname="gg" parentname="download" sharename="none" classtype="1" rate="100Mbps" priority="7" limit="0" default="0" attribute="0" weight="0" bridge="1" comment="" />\n"  \
+"      <channel classname="yy" parentname="gg" sharename="none" classtype="2" rate="1Mbps" priority="7" limit="0" default="1" attribute="0" weight="0" bridge="1" comment="" ceil="0" />\n"  \
+"    </channels>\n"  \
+"  </traffic>\n"  \
+"  <firewalls>\n"  \
+"    <application_firewall>1</application_firewall>\n"  \
+"    <scan_detect>0</scan_detect>\n"  \
+"    <dos_detect>0</dos_detect>\n"  \
+"    <firewall name="0" proto="any" auth="#GUEST#" action="allow" schedule="always" session_limit="Unlimit" vlan="" src="any" dst="any" mac="any" in_traffic="yy" out_traffic="yy" quota="any" quota_action="0" second_in_traffic="N/A" second_out_traffic="N/A" log="0" disabled="0" bridge="1" comment="" />\n"  \
+"    <firewall name="0" proto="any" auth="#GUEST#" action="allow" schedule="always" session_limit="Unlimit" vlan="" src="1" dst="any" mac="any" in_traffic="N/A" out_traffic="N/A" quota="any" quota_action="0" second_in_traffic="N/A" second_out_traffic="N/A" log="0" disabled="0" bridge="0" comment="" />\n"  \
+"    <firewall name="1" proto="any" auth="#GUEST#" action="allow" schedule="always" session_limit="Unlimit" vlan="" src="5" dst="any" mac="any" in_traffic="N/A" out_traffic="N/A" quota="any" quota_action="0" second_in_traffic="N/A" second_out_traffic="N/A" log="0" disabled="0" bridge="0" comment="" />\n"  \
+"  </firewalls>\n"  \
+"  <dns_policy>\n"  \
+"    <application_policy>0</application_policy>\n"  \
+"    <dataitem name="1" domain_name="any" bridge="0" src="any" dst="any" action="1" targetip="test" comment="" disabled="0" />\n"  \
+"  </dns_policy>\n"  \
+"  <http_dir_policy>\n"  \
+"    <policy bridge="0" extgroup="extg" name="1" disabled="0" servergroup="serg" comment="" />\n"  \
+"    <url_format bridge="0" format="http://a/b/c" comment="" />\n"  \
+"  </http_dir_policy>\n"  \
+"  <global_ip_session_limits>\n"  \
+"    <total_session_limit bridge="0" limit="60000" overhead="bypass" />\n"  \
+"    <total_session_limit bridge="1" limit="59000" overhead="bypass" />\n"  \
+"    <global_ip_session_limit name="0" addr="" per_ip_session_limit="0" total_session_limit="0" httplog="1" sesslog="0" httpdirpolicy="0" dnspolicy="0" action="trusted" bridge="0" comment="" />\n"  \
+"    <global_ip_session_limit name="1" addr="" dst="5" per_ip_session_limit="0" total_session_limit="0" httplog="0" sesslog="0" httpdirpolicy="0" dnspolicy="0" action="trusted" bridge="0" comment="" />\n"  \
+"    <global_ip_session_limit name="0" addr="" per_ip_session_limit="0" total_session_limit="0" httplog="1" sesslog="0" httpdirpolicy="0" dnspolicy="0" action="trusted" bridge="1" comment="" />\n"  \
+"  </global_ip_session_limits>\n"  \
+"  <port_mirrors>\n"  \
+"    <port_mirror_enable bridge="0" enable="1" />\n"  \
+"    <port_mirror_enable bridge="1" enable="1" />\n"  \
+"    <port_mirror name="0" proto="any" action="all" src="any" dst="any" disabled="0" bridge="0" comment="" />\n"  \
+"    <port_mirror name="0" proto="any" action="all" src="any" dst="any" disabled="0" bridge="1" comment="" />\n"  \
+"  </port_mirrors>\n"  \
+"  <session_limit>\n"  \
+"    <sessionlimit name="sessionlimit1" value="1000" />\n"  \
+"  </session_limit>\n"  \

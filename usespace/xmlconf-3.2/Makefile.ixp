@@ -1,0 +1,40 @@
+.KEEP_STATE:
+
+
+all:    xmlconf
+
+CXX     = /usr/local/arm-xscale/bin/armv5b-softfloat-linux-g++ -mbig-endian -DCONFIG_IXP
+GCC	= /usr/local/arm-xscale/bin/armv5b-softfloat-linux-gcc -mbig-endian -DCONFIG_IXP
+CXXFLAGS = -Wall -Wno-deprecated -I /usr/local/arm-xscale/include/ -DCONFIG_IXP
+LIB     = -L /usr/local/arm-xscale/lib -l opt -DCONFIG_IXP
+#CXX     = g++
+#GCC	= gcc
+#CXXFLAGS = -Wall -Wno-deprecated -I /usr/local/include/
+#LIB     = -L /usr/local/lib/ -l opt 
+
+main_object = xmlconf.o
+
+tinyxml_object = tinyxml/tinyxml.o tinyxml/tinystr.o tinyxml/tinyxmlerror.o tinyxml/tinyxmlparser.o
+
+#xml_object = xml/reader.o xml/writer.o xml/parser.o
+xml_object = xml/reader.o xml/writer.o xml/parser.o
+
+core_object = core/system.o core/management.o core/auth.o core/interface.o core/interfacemgr.o core/session.o core/sessionmgr.o core/logger.o core/node.o core/nodemgr.o core/netaddr.o core/netaddrmgr.o core/vlan.o core/vlanmgr.o core/schedule.o core/schedulemgr.o core/protocol.o core/protocolmgr.o core/traffic_channel.o core/traffic_util.o core/traffic_id.o core/trafficmgr.o core/firewall.o core/firewallmgr.o core/globalip.o core/globalipmgr.o core/portmirror.o core/portmirrormgr.o
+
+config_object = config/config.o
+
+base_object = base/log/filelog.o base/log/syslog.o base/log/consolelog.o base/log.o base/logwraper.o base/exception.o 
+
+debug_object = debug/debug_new.o
+
+object = $(tinyxml_object) $(base_object) $(config_object) $(core_object)  $(xml_object) $(main_object)
+
+xmlconf: $(object)
+	$(CXX) $(CXXFLAGS) $(object) $(LIB)  -o xmlconf
+
+
+%.o:    %.cc
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+clean:
+	${RM} *.o config/*.o base/*.o base/log/*.o debug/*.o core/*.o tinyxml/*.o xml/*.o xmlconf

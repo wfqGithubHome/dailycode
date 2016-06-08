@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xmlconfig series="IP" model="IP-100" version="2.1"> 
+  <system> 
+    <hostname>IP-100</hostname>  
+    <domainname/>  
+    <contact>support@maxnetsys.com</contact>  
+    <location>Max Net System Co.,Ltd</location>  
+    <password>$1$dVZ/h210$js19hwu66WJ/BcGgPkNEY1</password>  
+    <enable_stp>0</enable_stp>  
+    <auto_update>0</auto_update>  
+    <update_url>http://192.168.0.1/update</update_url>  
+    <ntp_enable>0</ntp_enable>  
+    <ntp_server/>  
+    <timezone/>  
+    <bridge_mtu>1500</bridge_mtu>  
+    <dbridge_perf>1</dbridge_perf>  
+    <snmp_enable>0</snmp_enable>  
+    <snmp_ro_community>public</snmp_ro_community>  
+    <snmp_rw_community>private</snmp_rw_community> 
+  </system>  
+  <management> 
+    <ip>192.168.0.12</ip>  
+    <netmask>255.255.255.0</netmask>  
+    <broadcast>192.168.0.255</broadcast>  
+    <gateway>192.168.0.1</gateway>  
+    <server>192.168.1.254</server>  
+    <dns_primary>0.0.0.0</dns_primary>  
+    <dns_secondary>0.0.0.0</dns_secondary> 
+  </management>  
+  <auth> 
+    <enable>0</enable>  
+    <timeout_mode>0</timeout_mode>  
+    <timeout_seconds>60</timeout_seconds>  
+    <enable_multi_user>1</enable_multi_user>  
+    <deny_guest_access>0</deny_guest_access>  
+    <redirect_http_request>0</redirect_http_request>  
+    <redirect_http_url/> 
+  </auth>  
+  <interface> 
+    <int0> 
+      <mode>auto</mode>  
+      <speed>100</speed>  
+      <duplex>full</duplex> 
+    </int0>  
+    <ext0> 
+      <mode>auto</mode>  
+      <speed>100</speed>  
+      <duplex>full</duplex> 
+    </ext0>  
+    <int1> 
+      <mode>auto</mode>  
+      <speed>1000</speed>  
+      <duplex>full</duplex> 
+    </int1>  
+    <ext1> 
+      <mode>auto</mode>  
+      <speed>1000</speed>  
+      <duplex>full</duplex> 
+    </ext1>  
+    <mgt> 
+      <mode>auto</mode>  
+      <speed>100</speed>  
+      <duplex>full</duplex> 
+    </mgt>  
+    <ha> 
+      <mode>auto</mode>  
+      <speed>100</speed>  
+      <duplex>full</duplex> 
+    </ha> 
+  </interface>  
+  <vlans/>  
+  <networks/>  
+  <networks_groups> 
+    <group name="inside networks" comment="inside networks comment"> 
+      <include name="Class A"/>  
+      <include name="Class B"/>  
+      <include name="Class C"/> 
+    </group> 
+  </networks_groups>  
+  <protocols/>  
+  <protocols_groups/>  
+  <schedules/>  
+  <schedules_groups/>  
+  <logger> 
+    <block_log>0</block_log>  
+    <http_log>1</http_log>  
+    <session_log>0</session_log>  
+    <session_layer7_log>msn qq http smtp pop3 bittorrent imap ftp emule dns smb telnet rdp 02jam</session_layer7_log>  
+    <scan_detect_log>0</scan_detect_log>  
+    <dos_detect_log>0</dos_detect_log> 
+  </logger>  
+  <traffic> 
+    <traffic_control>1</traffic_control>  
+    <channels name="upload" bandwidth="100Mbps" bridge="0" comment="Total Upload Bandwidth"> 
+      <channel name="High" parent="upload" rate="50Mbps" ceil="100Mbps" priority="3" sfq="1" default="1" comment="High Upload Bandwidth" per_host="0" per_dir="0" per_cidr="1" per_rate="0" per_ceil="0" per_limit="0"/>  
+      <channel name="Middle" parent="upload" rate="30Mbps" ceil="50Mbps" priority="3" sfq="1" default="0" comment="Middle Upload Bandwidth" per_host="0" per_dir="0" per_cidr="1" per_rate="0" per_ceil="0" per_limit="0"/>  
+      <channel name="Low" parent="upload" rate="20Mbps" ceil="50Mbps" priority="3" sfq="1" default="0" comment="Low Upload Bandwidth" per_host="0" per_dir="0" per_cidr="1" per_rate="0" per_ceil="0" per_limit="0"/> 
+    </channels>  
+    <channels name="download" bandwidth="1000Mbps" bridge="0" comment="Total Download Bandwidth"> 
+      <channel name="High" parent="download" rate="50Mbps" ceil="100Mbps" priority="3" sfq="1" default="1" comment="High Download Bandwidth" per_host="0" per_dir="0" per_cidr="1" per_rate="0" per_ceil="0" per_limit="0"/>  
+      <channel name="Middle" parent="download" rate="30Mbps" ceil="50Mbps" priority="3" sfq="1" default="0" comment="Middle Download Bandwidth" per_host="0" per_dir="0" per_cidr="1" per_rate="0" per_ceil="0" per_limit="0"/>  
+      <channel name="Low" parent="download" rate="20Mbps" ceil="50Mbps" priority="3" sfq="1" default="0" comment="Low Download Bandwidth" per_host="0" per_dir="0" per_cidr="1" per_rate="0" per_ceil="0" per_limit="0"/> 
+    </channels> 
+  </traffic>  
+  <firewalls> 
+    <application_firewall>1</application_firewall>  
+    <scan_detect>1</scan_detect>  
+    <dos_detect>1</dos_detect>  
+    <firewall name="0" proto="any" auth="#GUEST#" action="allow" schedule="always" session_limit="Unlimit" vlan="" src="any" dst="any" in_traffic="N/A" out_traffic="N/A" log="0" comment=""/>  
+    <firewall name="1" proto="any" auth="#GUEST#" action="allow" schedule="always" session_limit="Unlimit" vlan="" src="any" dst="any" in_traffic="N/A" out_traffic="N/A" log="0" comment=""/>  
+    <firewall name="2" proto="any" auth="#GUEST#" action="allow" schedule="always" session_limit="Unlimit" vlan="" src="any" dst="any" in_traffic="N/A" out_traffic="N/A" log="0" comment=""/>
+  </firewalls>  
+  <session_limit> 
+    <sessionlimit name="xxx" value="12"/> 
+  </session_limit>  
+   <global_ip_session_limits>
+      <total_session_limit bridge="0" limit="1024" overhead="bypass" />
+	  <total_session_limit bridge="1" limit="2048" overhead="block" />
+      
+      <global_ip_session_limit name="0" addr="Class B" per_ip_session_limit="xxx" total_session_limit="xxx" action="" httplog="1" bridge="0" comment="" />
+	  <global_ip_session_limit name="1" addr="Class C" per_ip_session_limit="xxx" total_session_limit="xxx" action="" httplog="0" bridge="0" comment="" />
+	  <global_ip_session_limit name="2" addr="inside networks" per_ip_session_limit="xxx" total_session_limit="xxx" action="block" bridge="0" comment="" />
+
+	  <global_ip_session_limit name="0" addr="Class B" per_ip_session_limit="xxx" total_session_limit="xxx" action="" httplog="1" bridge="1" comment="" />
+	  <global_ip_session_limit name="1" addr="inside networks" per_ip_session_limit="xxx" total_session_limit="xxx" action="" httplog="1" bridge="1" comment="" />
+	  <global_ip_session_limit name="2" addr="Class A" per_ip_session_limit="xxx" total_session_limit="xxx" action="block" bridge="1" comment="" />
+      
+  </global_ip_session_limits>
+</xmlconfig>

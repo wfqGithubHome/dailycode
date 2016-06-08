@@ -1,0 +1,50 @@
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <error.h>
+#include "config/config.h"
+#include "xml/reader.h"
+#include "xml/writer.h"
+#include "xml/parser.h"
+#include "global.h"
+
+using namespace maxnet;
+
+const Configuration* config;
+
+int main(int argc, char *argv[])
+{
+
+	Configuration real_config(&argc, &argv);
+	config = &real_config;
+
+	Log * pLog = new Log(PACKAGE_LONG_NAME, config->syslog, false, config->console);
+
+	if(config->read){
+
+		Reader * xml_reader = new Reader(pLog, config->main_config_filename);
+		return xml_reader->getNode(config->key);
+	}
+
+	if(config->write){
+		Writer * xml_writer = new Writer(pLog, config->main_config_filename);
+		return xml_writer->setNode(config->key, config->value);
+	}
+
+	Parser * xml_parser = new Parser(pLog,  config->main_config_filename, 
+											config->netaddr_config_filename, 
+											config->rfc_proto_config_filename,
+											config->l7_proto_config_filename,
+											config->check, 
+											config->print_fw,
+											config->print_action,
+											config->print_macbind, 
+											config->print_macauth,
+											config->print_quota,
+											config->print_globalip, 
+											config->print_port_mirror,
+											config->print_dnshelper,
+											config->print_httpdirpolicy);
+
+	return xml_parser->process();
+}

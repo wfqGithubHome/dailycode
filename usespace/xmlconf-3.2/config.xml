@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xmlconfig series="NS" model="MAXOS" version="2.1">
+    <system>
+        <hostname>MAXOS</hostname>
+        <domainname />
+        <contact>service@cdnat.com</contact>
+        <location>ChengDU Net All Technology Co.</location>
+        <password>$1$dVZ/h210$js19hwu66WJ/BcGgPkNEY1</password>
+        <enable_stp>0</enable_stp>
+        <auto_update>0</auto_update>
+        <update_url>www.mikrotik.com.cn</update_url>
+        <ntp_enable>0</ntp_enable>
+        <ntp_server />
+        <timezone />
+        <bridge_mtu>1500</bridge_mtu>
+        <dbridge_perf>1</dbridge_perf>
+        <snmp_enable>0</snmp_enable>
+        <snmp_ro_community>public</snmp_ro_community>
+        <snmp_rw_community>private</snmp_rw_community>
+    </system>
+    <management>
+        <ip>192.168.0.254</ip>
+        <netmask>255.255.255.0</netmask>
+        <broadcast>192.168.0.255</broadcast>
+        <gateway>192.168.0.1</gateway>
+        <server>192.168.0.1</server>
+        <dns_primary>0.0.0.0</dns_primary>
+        <dns_secondary>0.0.0.0</dns_secondary>
+    </management>
+    <auth>
+        <enable>0</enable>
+        <timeout_mode>0</timeout_mode>
+        <timeout_seconds>60</timeout_seconds>
+        <enable_multi_user>1</enable_multi_user>
+        <deny_guest_access>0</deny_guest_access>
+        <redirect_http_request>0</redirect_http_request>
+        <redirect_http_url />
+    </auth>
+    <interface>
+        <int0>
+            <mode>auto</mode>
+            <speed>1000</speed>
+            <duplex>full</duplex>
+        </int0>
+        <ext0>
+            <mode>auto</mode>
+            <speed>1000</speed>
+            <duplex>full</duplex>
+        </ext0>
+        <mgt>
+            <mode>auto</mode>
+            <speed>1000</speed>
+            <duplex>full</duplex>
+        </mgt>
+        <ha>
+            <mode>auto</mode>
+            <speed>1000</speed>
+            <duplex>full</duplex>
+        </ha>
+    </interface>
+    <vlans />
+    <networks>
+        <addr name="any" value="192.168.0.0/24" range="false" comment="any" />
+        <addr name="test" value="192.168.0.28" range="false" comment="test" />
+        <addr name="host2" value="3.3.3.3" range="false" comment="test" />
+        <addr name="host4" value="3.3.3.4" range="false" comment="test" />
+        <addr name="host5" value="3.3.3.5" range="false" comment="test" />
+        <addr name="host6" value="3.3.3.6" range="false" comment="test" />
+        <addr name="host7" value="3.3.3.7" range="false" comment="test" />
+        <addr name="host8" value="3.3.3.8" range="false" comment="test" />
+        <addr name="host9" value="3.3.3.9" range="false" comment="test" />
+        <addr name="testhtmlserver" value="10.200.1.1" range="false" comment="test" />
+    </networks>
+    <networks_groups>
+        <group name="inside networks" comment="inside networks comment">
+            <include name="host8" />
+            <include name="host8" />
+            <include name="host8" />
+        </group>
+        <group name="group2" comment="inside networks comment">
+            <include name="host4" />
+            <include name="host4" />
+            <include name="host4" />
+        </group>
+    </networks_groups>
+    <domain_data>
+        <domain name="domain1" value="www.g.com" comment="" />
+        <domain name="d2" value="sohu.com" comment="" />
+    </domain_data>
+    <domain_groups>
+        <group name="dg">
+            <include name="domain1" />
+            <include name="d2" />
+        </group>
+        <group name="1">
+            <include name="d2" />
+        </group>
+        <group name="2">
+            <include name="domain1" />
+        </group>
+    </domain_groups>
+    <protocols />
+    <protocols_groups>
+        <group name="WEB">
+            <include name="HTTP-BROWSE" />
+            <include name="HTTPS" />
+        </group>
+        <group name="STREAM">
+            <include name="PPFILM" />
+            <include name="PPLIVE" />
+            <include name="PPSTREAM" />
+            <include name="QQLIVE" />
+            <include name="REALPLAYER" />
+            <include name="MEDIAPLAYER" />
+            <include name="YOUTUBE" />
+            <include name="FLV" />
+            <include name="UCLIVE" />
+        </group>
+    </protocols_groups>
+    <schedules />
+    <schedules_groups />
+    <logger>
+        <block_log>0</block_log>
+        <http_log>0</http_log>
+        <session_log>0</session_log>
+        <session_layer7_log>17GUAGUA 9158 ALIWW AOL BAIDUHI BIGANT CAIHONG DOSHOW EBUDDY FETION ICQ ICQ-AUDIO ICQ-FILE ICQ-WEBCAM IRC LAVA LIAOLIAO MSN MSN-AUDIO MSN-FILE MSN-WEB MSN-WEBCAM MYPOPO QQ QQ-AUDIO QQ-FILE QQ-SHARE QQ-WEBCAM SINAUT UC WEBIM XMPP YAHOO YAHOO-AUDIO YAHOO-FILE YAHOO-WEB YAHOO-WEBCAM ASCTRL-AGENT DBASE DBCONTROL-AGENT GIOP GIOP-SSL MS-SQL-M MS-SQL-S MYSQL ORACLE UFIDA CCB CMB ICBC AIRSYNC BIFF CCMAIL HOTMAIL IMAP IMAPS LOTUSMTAP LOTUSNOTES POP3 POP3S RE-MAIL-CK SMTP AFPOVERTCP BFTP DROPBOX FLASHGET FTP GOGOBOX HTTP-DOWNLOAD HTTP-MIRROR HTTP-PART MICROSOFT-DS MSUPDATE NNTP RAYSOURCE RSYNC SFTP SMTCUPDATE TFTP TFTPS THUNDER UUCP WAFS 02JAM 1000Y 131WANWAN 175PT 7FGAME AION AMPED ARCHLORD ATLANTICA AUDITION BATTLEFIELD1942 BDGAME BNETFILE BNETGAME BO CFGAME CGA CHD CHIBI CHINAGAMES CJPP CJSH CJWZ CJYZ COUNTERSTRIKE CQQZ CRAZYKART CROSSFIRE CSJ CWSL DAYOFDEFEAT DDVLOBBY DHXY DHXYWZ DNF DOKEE DOOM3 DTQB EUDEMONS FEIFEI FHZL FIFAONLINE2 FKXD FLGAME FSJOY FWTJ FYZWDTX GAME-FLOW GAMEABC GAMETEA GARENA GFSJ GIANT ICQ-GAME JJ JXSJ KZSJ LAIZI LINEAGE LMZY LONGZHIGU LOONG LQS LUNA LUOQI LYPT MDM365 MHDSN MHGL MHLZ MHZX MINGJIANG MIR MJSG MLBB MOQISHI MSN-GAME MU MXD MXSJ MY OURGAME POPKART POPOGAME POPTANG QQ-GAME QQDANCER QQDMX QQFFO QQHX QQR2 QQSG QQSPEED QQTANG QSH QUAKE4 RWPD RXJH SANGUOSHA SDFW SDGUNDAM SEER SGCQ SGDL SGOL SHENJIE SHENQI SILKROAD SMDL SSGD SSOL SUBSPACE SUN SXCS TCYX TIANXIA2 TLBB TMZ TSTD2 TZBD TZDM VSCLIENT WANKU WANMEI WENDAO WLQXZ WOW WULIN2 WUYIGAME XBOXLIVE XCB XCCS XINSHUMEN XIWANG XIYOUJI XJSQ XLGAME XLQY2 XLZJ XPTYJ XUNXIAN XYQJ XYXND YAHOO-GAME YBTX YGAM YHGAME YQOL YTJYTLD YXL ZHANHUO ZHENGFU ZHSK ZHUXIAN ZHW ZHYX ZMR ZSZZ ARNS CAN-DCH CAN-FERRET CAN-NDS CVS DCP DDDP DDNS-V3 DDT DHCP DHCP-FAILOVER DNS EPMAP FINGER GKRELLM HDDTEMP HTTP-RPC-EPMAP IDENT LDAP LDAPS NCP NETBIOS-DGM NETBIOS-NS NETBIOS-SSN NTP RLP SMB SNMP SSDP SUNRPC SYSLOG TACACS TIME TSP UTIME ZMAAP ANALYZING_TCP ANALYZING_UDP ANY ARP ICMP IPV6 IPX MPLS OTHERS OTHERS_IPV4 OTHERS_TCP OTHERS_UDP PPPOE SOFT_BYPASS 360SAFE ARES AUDIOGALAXY BAIDUX BITTORRENT DIRECTCONNECT EMULE EZPEER FASTTRACK FOXY FROSTWIRE GNUTELLA GOBOOGY HUNTMINE KTXNEWS KUGOO KURO MAZE MUTE MXIE OPENFT P2P-COMMON P8 PANDO PIGO POCO PP365 PPGOU QQDOWNLOAD REALLINK SHAREAZA SOOYUU SORIBADA SOULSEEK VAGAA IPP LPD CISCOVPN CITRIX LOGMEIN NETMAN NETOP PCANYWHERE RADMIN RDP RLOGIN RTELNET SSH TEAMVIEWER TELNET TELNETS VNC WINBOX X11 BGMP BGP BRP CFS CISCO-TDP RIP AH-ESP-ENCAP APPLE-VPNS-RP AUTH CHECKPOINT-RTM CP-CLUSTER ISAKMP SOCKS SSL 10JQKA-Q 10JQKA-T 888JC-Q APEX-T AVIC-Q AVIC-T BOCI-Q BYDS-Q BYDS-T CAIFUTONG-T CAISHUN-Q CJIS-Q DACELUE-Q DAFUXING-Q DAZHIHUI-Q DHQ-Q EMONEY-Q ESSENCES-T ESUNNY-T EWINNER-T FENXIJIA-Q FOUNDERSC-Q FUYOO-Q GALAXY-Q GJZQ-Q GNNT-Q GNNT-T GTJA-Q GTJA-T GUOSEN-Q HEXUN-Q HHNSD-Q HTS-T HUATAI-Q HUNDSUN-T HXGC JSDGOLD-T LHZQ-T MUCHINFO-T NEWONE-T POBOGC QIANLONG-Q QIANLONG-T QIANXUN-Q SHIHUA-Q SMEYE-Q STOCKTRACE-Q SUNGARD-T TDX-Q TDX-T TDXGC TZT-T TZYJ-Q TZYJ-T WENHUA-Q WENHUA-T WIND-Q ZQZX-Q 56 APPLEQTC APPLEQTCSRVR BESTV BOBO CCIPTV CNTV DOPOOL FEIDIAN FLV FUNSHION HCRT IFENG IKU IMGO JOY KKBOX KOOWO KU6 KU6SPEEDUPPER LETV LIUJIANFANG LIVE365 MEDIAPLAYER MMS MOPITV MYSEE ORINNO PPFILM PPLIVE PPSTREAM PPVA QIYI QQLIVE QUICKTIME QVOD QYULE REALPLAYER RTSP SHOUTCAST SINATV SOHUTV TOMLIVE TTPLAYER TUDOU TUDOUVA TVANTS TVKOO TVU UMIWI USTREAM UUSEE V1 VGOLIVE VIEWGOOD WEBPLAYER9 YOUKU YOUTUBE HTTP-TUNNEL HTTPTUNNEL L2TP PPTP REALTUNNEL SOFTETHER STUN VNN ALICALL CALL-SIG-TRANS CISCO-SCCP ETNANO EYEBALLCHAT GIZMO H248-BINARY H263-VIDEO H323 H323CALLSIGALT H323GATEDISC H323GATESTAT H323HOSTCALLSC IMTC-MCS ISPEAK IVAGE KC KINGHOO MEGACO-H248 MSICCP NET2PHONE POLYCOM RSVP RTCP RTP SEEGLE SIP SKYPE TEAMSPEAK VENTRILO VTALK WAIWAI ZTE ACE-PROXY DAVSRC DOCIN FACEBOOK FLICKR FREENET GOOGLEDESKTOP GOOGLETRANS GOPHER HTTP-BROWSE HTTP-OTHERS HTTPS PICASA PROXY TWITTER WHJMOA XML</session_layer7_log>
+        <scan_detect_log>0</scan_detect_log>
+        <dos_detect_log>0</dos_detect_log>
+    </logger>
+    <traffic>
+        <traffic_control>1</traffic_control>
+        <channels classname="upload" bandwidth="1000Mbps" bridge="0" comment="Tztal Upload Bandwidth">
+            <channel classname="up1" parentname="upload" sharename="none" classtype="0" rate="100Mbps" priority="0" limit="100" default="0" attribute="1" weight="0" bridge="0" comment="0z" />
+            <channel classname="up99" parentname="upload" sharename="none" classtype="0" rate="1Mbps" priority="0" limit="0" default="0" attribute="0" weight="0" bridge="0" comment="" />
+            <channel classname="upA" parentname="upload" sharename="none" classtype="1" rate="100Mbps" priority="7" limit="0" default="0" attribute="0" weight="0" bridge="0" comment="fzf" />
+            <channel classname="upA-1" parentname="upA" sharename="up1" classtype="2" rate="100Mbps" priority="7" limit="1" default="1" attribute="1" weight="15" bridge="0" comment="0z" />
+            <channel classname="upA-2" parentname="upA" sharename="up1" classtype="2" rate="1Mbps" priority="7" limit="0" default="0" attribute="0" weight="1" bridge="0" comment="" />
+        </channels>
+        <channels classname="download" bandwidth="1000Mbps" bridge="0" comment="Tztal Download Bandwidth">
+            <channel classname="down2" parentname="download" sharename="none" classtype="0" rate="1000Mbps" priority="0" limit="0" default="0" attribute="0" weight="0" bridge="0" comment="" />
+            <channel classname="downA" parentname="download" sharename="none" classtype="1" rate="100Mbps" priority="7" limit="0" default="0" attribute="0" weight="0" bridge="0" comment="" />
+            <channel classname="downA-1" parentname="downA" sharename="none" classtype="2" rate="200Mbps" priority="7" limit="0" default="1" attribute="0" weight="0" bridge="0" comment="" />
+            <channel classname="sss" parentname="downA" sharename="none" classtype="2" rate="100Mbps" priority="7" limit="0" default="0" attribute="0" weight="0" bridge="0" comment="aaa" />
+            <channel classname="sss" parentname="downA" sharename="none" classtype="2" rate="100Mbps" priority="7" limit="0" default="0" attribute="0" weight="0" bridge="0" comment="aaa" />
+        </channels>
+        <channels classname="upload" bandwidth="1000Mbps" bridge="1" comment="Tztal Upload Bandwidth">
+            <channel classname="aa" parentname="upload" sharename="none" classtype="0" rate="1Mbps" priority="0" limit="0" default="0" attribute="0" weight="0" bridge="1" comment="" />
+            <channel classname="gg" parentname="upload" sharename="none" classtype="1" rate="100Mbps" priority="7" limit="0" default="0" attribute="0" weight="0" bridge="1" comment="" />
+            <channel classname="yy" parentname="gg" sharename="none" classtype="2" rate="600Kbps" priority="7" limit="0" default="1" attribute="0" weight="0" bridge="1" comment="0z" />
+        </channels>
+        <channels classname="download" bandwidth="1000Mbps" bridge="1" comment="Tztal Download Bandwidth">
+            <channel classname="aa" parentname="download" sharename="none" classtype="0" rate="1Mbps" priority="0" limit="0" default="0" attribute="0" weight="0" bridge="1" comment="" />
+            <channel classname="gg" parentname="download" sharename="none" classtype="1" rate="100Mbps" priority="7" limit="0" default="0" attribute="0" weight="0" bridge="1" comment="" />
+            <channel classname="yy" parentname="gg" sharename="none" classtype="2" rate="1Mbps" priority="7" limit="0" default="1" attribute="0" weight="0" bridge="1" comment="0z" />
+        </channels>
+    </traffic>
+    <firewalls>
+        <application_firewall>1</application_firewall>
+        <scan_detect>0</scan_detect>
+        <dos_detect>0</dos_detect>
+    </firewalls>
+    <dns_policy />
+    <extension>
+        <ext name="iso" value=".iso" comment="" />
+        <ext name="rar" value=".rar" comment="" />
+        <ext name="rmvb" value=".rmvb" comment="" />
+        <ext name="rm" value=".rm" comment="" />
+        <ext name="doc" value=".doc" comment="" />
+        <ext name="tgz" value=".tgz" comment="" />
+    </extension>
+    <extension_group>
+        <group name="compress">
+            <include name="rar" />
+            <include name="iso" />
+            <include name="tgz" />
+        </group>
+        <group name="video">
+            <include name="rmvb" />
+            <include name="rm" />
+        </group>
+    </extension_group>
+    <httpserver>
+        <http name="server1" ip_addr="10.200.15.1" servertype="mini_http" prefix="aaa" suffix="bbb" comment="mini_http policy" />
+        <http name="server2" ip_addr="10.200.15.2" servertype="apache" prefix="aaa" suffix="bbb" comment="http policy" />
+        <http name="server3" ip_addr="10.200.15.3" servertype="ngix" prefix="aaa" suffix="bbb" comment="policy" />
+    </httpserver>
+    <httpserver_group>
+        <group name="svrgroup1">
+            <include name="server1" />
+            <include name="server2" />
+        </group>
+        <group name="svrgroup2">
+            <include name="server1" />
+            <include name="server3" />
+        </group>
+    </httpserver_group>
+    <http_dir_policy>
+        <url_format bridge="0" format="ip/domain/uri" comment="default format" />
+        <url_format bridge="1" format="ip/uri/domain" comment="default 2 format" />
+        <policy bridge="0" extgroup="compress" servergroup="svrgroup1" comment="bridge 0 mini_http policy" />
+        <policy bridge="0" extgroup="video" servergroup="svrgroup2" comment="bridge 1 apache policy" />
+        <policy bridge="1" extgroup="video" servergroup="svrgroup2" comment="bridge 1 apache policy" />
+    </http_dir_policy>
+    <global_ip_session_limits>
+        <total_session_limit bridge="0" limit="1000000" overhead="bypass" />
+        <global_ip_session_limit name="0" addr="" dst="" per_ip_session_limit="0" total_session_limit="0" httplog="1" dnspolicy="1" httpdirpolicy="1" action="trusted" bridge="0" comment="" />
+    </global_ip_session_limits>
+    <port_mirrors>
+        <port_mirror_enable bridge="0" enable="0" />
+    </port_mirrors>
+    <session_limit>
+        <sessionlimit name="session" value="1000" />
+    </session_limit>
+</xmlconfig>

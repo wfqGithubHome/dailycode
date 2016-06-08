@@ -1,0 +1,21 @@
+.KEEP_STATE:
+
+
+all:    authctl
+
+
+GCC     = /usr/local/arm-xscale/bin/armv5b-softfloat-linux-gcc -mbig-endian
+CFLAGS = -Wall -Wno-deprecated -I /root/src/arm/opt-3.19/src/
+LIB     = -L /root/src/arm/opt-3.19/src/ -l opt 
+
+object = authctl.o 
+
+authctl: $(object)
+	$(GCC) $(CFLAGS) authctl.o $(LIB) -o authctl
+
+%.o:    %.c
+	$(GCC) $(CFLAGS) -c $< -o $@
+
+clean:
+	${RM} *.o authctl
+
