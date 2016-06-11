@@ -1,0 +1,196 @@
+1. 什么是cgic？
+
+	cgic是一个c语言库，用于基于CGI标准规范的www应用程序的创建。
+	cgic执行以下任务：
+	（1）解析数据，校正有缺陷和不一致的浏览器
+	（2）透明的接受由GET和POST传递的表单数据
+	（3）接受上传完毕的文件和普通的表单数据
+	（4）提供设置和恢复cookies的函数
+	（5）以一致的方式处理表单字段的换行符
+	（6）提供字符串，整数，浮点数，单选，多选 函数来恢复表单数据
+	（7）对于数字字段提供边界检查
+	（8）加载CGI环境变量到C字符串，这些字符串总是不为空
+	（9）在调试环境下，提供捕获CGI状态的方法，包括文件上传和cookies
+
+	cgic 在兼容CGI的服务器环境下是可移植的，并且在posix/Unix/Linux/Windows环境下，不用修改编译文件。
+
+2. 构建cgic：一个简单的应用
+
+	一个简单的例子“cgictest.c”， 包含在cgic库里面。这个CGI程序显示一个输入表单，
+	接收一个提交，然后显示提交的内容。在这个过程中，基本上所有的cgic的特性都被测试了。
+	在一个Unix系统上，可以通过输入‘make cgictest.cgi’来构建cgictest。cgic.c,cgictest.c将会编译，
+	然后链接产生这个cgictest应用程序。在非unix操作系统上，你需要创建一个工程包含cgic.c和cgictest.c，然后编译它。
+
+3. 怎样编写一个cgic应用程序
+
+	注：所有的cgic应用程序必须连接到cgic.c模块自身。怎样连接取决于你的操作系统，在unix下，
+		就是使用所提供的Makefile文件作为一个范例	
+	
+	因为所有的CGI应用程序必须执行确定的初始化任务，例如解析表单数据和检查环境变量，cgic库提供了它自己的main()
+	函数。当你用cgic库来写应用时，你应该实现一个cgiMain()函数来作为程序的开始，当初始化cgi的工作成功结束之后，
+	cgic库将会调用cgiMain()函数。你的程序必须包含 “cgic.h” 头文件。
+
+	重要：如果你写了你自己的main()函数，你的程序将不能顺利链接。你的代码应该从cgiMain()开始。cgic库为你提供了
+	main()。（想要不同行为的人可以修改cgic.c文件）
+
+	（对照cgictest.c）
+	注意这个DEBUG #ifdef。如果DEBUG被定义在编译时期，或者出入“#define DEBUG 1" 到程序里面，或者在Makefile文件
+	中设置，或者其他的开发环境，那么LoadEnvironment()函数将被调用，这个函数调用cgiReadEnvironment()来恢复一个
+	被捕获的CGI环境用于调试的目的。另外可以看capture程序的讨论，这个程序是用来在CGI调试的时候使用的。因为这是
+	一个测试程序，cgiFormSubmitClicked()函数也被调用来检查按钮的点击状态，这个按钮用来重新载入被保存的CGI环境。
+	一个最终的CGI程序一般情况从不允许终端用户来做这个决定。
+
+4. 设置Cookies
+
+	下一步，一个cgiHeader函数将被调用。这个特殊的程序演示了许多功能，包括cookies的设置。如果程序员希望设置一个
+	cookie，这个cookie设置函数将被第一个调用，在其他的标题（Headers）之前被输出。在cgictest.c中调用CookieSet()
+	函数来完成。因为这是一个测试程序，cgiFormString()函数被用来从用户之前填入的表单中获取名字和值。通常，
+	cookie 名字和值被用来满足程序员的需求并且提供一种之后标识相同用户的方法。
+
+	cgiHeaderCookiesSetString()函数通过请求浏览器存储的内容来设置cookie。这不能保证一定会成功。许多浏览器完全
+	拒绝cookies，另外，浏览器不一定会保存他们直到服务器请求的到来，如果还在的话就完好无损的返回这些值。当使用
+	cookies的时候代码总是要有防御性的。
+	
+	这个cname和cvalue参数当然就是cookie的名称和值，第三个参数是时间，以秒计数，表示浏览器应该存储的时间，之后
+	就过期。在这个例子中，被设置成86400秒，表示一天。浏览器可能遵守也可能不遵守这个设置，正如cookie的其他一切
+	一样。
+	
+	第四个参数标识了在网站中的”路径“，对这个路径来说cookie是有效的。一个cookie要在每一次访问站点的时候以/路径
+	的形式被发送回去。在这个例子里，cookie只跟CGI程序本身有关，所以cgiScriptName被发送。类似的，一个cookie被
+	认为跟一个单一站点相关或者整个域，例如www.boutell.com或者整个.boutell.com 域。这个例子中，当前的这个程序
+	在它上面跑的这个站点是仅有的相关站点，所以cgiServerName被当做域。
+
+5. 输出Content Type Header
+
+	下一步，cgiHeaderContentType()函数被调用来标识输出文档的MIME类型，这个例子中是”text/html“。其他一些普通的
+	MIME类型是”image/gif“，”image/jpeg“ 和 ”audio/wav“。
+
+	注意，cgiHeaderStatus()或者cgiHeaderLocation()被调用来输出一个错误代码或者重定向到一个不同的URL。在程序的
+	单次执行中，只能有一个cgiHeader函数可以被调用。
+	
+	重要：一个cgiHeader函数，通常是cgiHeaderContentType()，必须在输出任何其他应答之前调用。否则，结果将是一个
+	不合法的文档，浏览器的行为不可预测。你当然也可以输出你自己的 ContentType 和其他的标题信息到cgiOut如果你喜欢。
+	cgiHeader函数只是提供了一种便利。
+	
+6.处理表格提交
+
+	像许多CGI程序一样，cgitest基于不同的提交按钮是否被按下来判断应该怎样处理。当testcgic 或者saveenvironment按
+	钮被按下，cgitest调用HandleSubmit函数，它将调用其他的函数来处理表单的不同部分。
+	
+7. 处理文本输入
+
+	cgitest中Name()这个函数的目的是取回并且显示用户输入的名字。因为程序员决定名字被允许的最大长度是80个字符，
+	一个81字符缓冲区被声明（接收最后的null字符）。接着，cgiFormStringNoNewlines()函数被调用来取出名字并且确保
+	回车不出现在这个名字中（忽略一些网页浏览器的错误行为）。第一个参数是表格中的输入字段的名称，第二个参数是
+	数据存储的buffer，第三个参数是buffer的长度。cgic绝不会超出buffer大小，并且总是会提供一个null结尾的字符串作
+	为响应。如果buffer太小，字符串被截断。如果这个不可接受的，可以用cgiFormStringSapceNeeded()函数来检测所需空
+	间量。cgiFormStringNoNewlines()函数的返回值同样可以说明截断是否出现。参考详细的cgiFormStringNoNewlines()
+	描述。
+	
+8. 处理输出
+
+	注意函数Name()写他的HTML到cgiOut而不是stdout。用户实际提交的名字可能包含对HTML来说有特殊意义的字符，特别是
+	<,>,&字符。cgiHtmlEscape()函数用来输出用户输入的名字，他会将名字中这些特殊字符的出现转换成&lt，&gt，&amp。
+	
+	重要：cgiOut通常等价于stdout，并且没有额外的执行开销。推荐使用cgiOut作为输出是确保对”在改版过后的cgic库对
+	于特殊环境下对于每一个cgi连接不提供stdin和stdout“情况的可移植性。
+	注意，对于文本输入域，回车是被期望的，这时应该用cgiFormString()函数替代。cgiFormString确保换行符总是被一个
+	单回车符代表（ascii十进制13）。让程序员的生活变得容易。参考cgictest.c中的Address()函数的源代码中例子。
+
+9.处理复选框
+
+	考虑Hungry()函数，它检查用户是否选中了hungry复选框。
+	这个函数使用了cgiFormCheckboxSingle()函数，它检查是否一个单复选框被勾选。cgiFormCheckboxSingle()接受复选框的
+	名字属性作为它唯一的参数，选中返回cgiFormSuccess，否则返回cgiFormNotFound。如果多个复选框带有相同的名字，考
+	虑使用cgiFormCheckboxMultiple(),cgiFormStringMultiple()函数。
+	
+10.处理数字输入
+
+	现在看Temperature()函数，它取回一个温度的度数（一个浮点数），并且确保位于一个特定的边界内。
+	cgiFormDoubleBounded()函数用来取出温度，第一个参数是表格中温度字段名，第二个参数指向接受结果的变量地址，接
+	下来的两个参数是下限和上限，最后一个是默认值，当用户没有提交这个值时返回默认值。
+	
+	这个函数总是返回一个区间内的合理值，值如果超出下限或者上限，则被限制在边界值。然而，cgiFormDoubleBounded函数
+	的返回值可以确定用户的输入是否在区间，是否为空，等等。参考cgiFormDoubleBounded()函数的详细描述。如果区间检查
+	没有必要，考虑使用cgiFormDouble()代替。
+	
+	注意，对于整数输入，可用函数cgiFormInteger和cgiFormIntegerBounded ，他们的行为和上面的浮点数函数类似。
+	
+11. 处理单选输入
+
+	HTML的<SELECT>标签用来提供几个选项。单选按钮和复选框用于选择的数量相对较小的时候。看看cgictest.c中的Color()。
+	这个函数测试用户在表单中的<select>列表中选择了哪个颜色。先声明一个颜色数组，然后调用cigFormSelectSingle	()
+	函数测试哪个选项被选中。第一个参数表示表单中字段名，第二个参数指向颜色数组，第三个参数表示数组元素个数，第四
+	个参数指向一个下标变量，最后一个参数表示下标默认值，用于浏览器没有提交选择时。
+	
+	cigFormSelectSingle()总是标识一个合理的选项值。然而，如果程序员希望确认实际被提交的值是一个合法的值，等等，
+	可以咨询cgiFormSelectSingle()的返回值。查看完整的cgiFormSelectSingle()函数的描述获取更多信息。
+	
+	注意单选按钮组合<SELECT>列表都可以被这个函数处理，如果你处理单选按钮组，你可能更喜欢调用cgiFormRadio()，这个
+	函数是一样的。
+	
+	如果我在运行期间不知道可接受的选项呢？
+	
+	如果可接受选项直到运行时还不知道，可以简单的从磁盘加载选项。但是如果可接受的选项不固定（考虑一个国家名字列表
+	新名字可能在任何时候加入表单并且直接改变代码或者分离列表是不方便的），简单的调用cgiFormStringNoNewlines()代替
+	直接取出字符串。记住，如果你这样做，验证响应以确认它是安全的和合法的将会变成你的程序要解决的一个问题。
+	cgiFormSelectSingle()函数的有点是不合法的响应不会返回。
+	
+	对于处理多选<SELECT>列表和带有相同名字的复选框组，请看下面马上讨论的cgitest.c中NonExButtons()函数。
+	
+12. 处理多选输入
+
+	看看NonExButtons()函数前半部分：
+	这个函数调用cgiFormCheckboxMultiple()函数来识别一个或多个被选中的带有相同名字的复选按钮。这个函数与
+	cgiFormSelectMultiple()有相同的功能。也就是说，处理<SELECT>标签的MULTIPLE属性类似于处理带有相同名字的
+	复选按钮选项组。
+	
+	cgiFormCheckboxMultiple()函数的第一个参数是复选框选项组字段的名称，第二个参数指向一个合法值得数组，这些
+	会对应到复选框的VALUE属性（或者<SELECT>列表中的OPTION标签），第三个参数是合法值数组中值的个数。第四个参数
+	指向一个具有与合法值数组相同个数的整型数组，对于每一个值，如果复选框被选中，就设置成true，否则false。
+	
+	最后一个参数指向一个整型值，这个被设置成提交的非法响应的个数。（不在合法响应值数组内）如果对这个值不感兴趣，
+	那么最后一个参数是null指针。
+	
+	注意cgiFormCheckboxMultiple()的返回值可以用来检测所有选项都被选中。查看该函数的其他返回值完整描述请看。。。
+	
+	如果我在运行期间不知道可接受的选项呢？
+	
+	如果可接受选项直到运行时还不知道，可以简单的从磁盘加载选项。但是如果可接受的选项不固定（考虑一个冰淇淋口味
+	列表，新名字可能在任何时候加入表单并且直接改变代码或者分离列表是不方便的），需要一个动态的处理方法。
+	
+	看看NonExButtons()函数的后半部分：
+	这段代码摘录展示了一种可替代的方法来获取选项列表。函数cgiFormStringMultiple()使用一个特定的输入字段名来获取
+	一个包含所有被提交选项的字符串数组，这种方法对<SELECT>标签的MULTIPLE属性和具有相同名字的复选按钮组同样适用。
+	
+	cgiFormStringMultiple()函数的第一个参数是输入字段名或者复选框选项组字段名。第二个参数是字符串数组的地址。
+	看看这个函数的简单调用：
+	cgiFormStringMultiple("vote", &responses);
+	
+	要怎么知道有多少个响应呢？
+	调用之后，这个字符串数组的最后一个值时null。可以通过一个简单的循环计数来统计响应个数。
+
+	重要：cgiFormStringMultiple()函数返回一个指向动态内存的指针。你不应该改变响应数组中的字符串或是数组本身，
+	如果有修改的需求，应该拷贝字符串。当你完成了对响应数组的使用，你要调用cgiStringArrayFree()来释放内存。
+	否则找出内存泄露。不要调用free()函数，如果你这样做，单个字符串不会被释放。
+	
+13. 访问已上传文件
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
