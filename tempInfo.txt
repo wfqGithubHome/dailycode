@@ -1,0 +1,10 @@
+1.route_configure.cgi(1)
+2.portscan.cgi
+3.configures.cgi(1)
+4.wifi.cgi
+5.flowstat.cgi(1)
+6.protocols.cgi
+7.routeface.cgi
+8.uploadconfig.cgi
+9.usersync.cgi
+10.wifilogin.cgi
